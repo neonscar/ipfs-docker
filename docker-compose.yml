@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  ipfs-node:
+    build: .
+    container_name: ipfs-node
+    ports:
+      - "4001:4001"
+      - "4001:4001/udp"
+      - "5001:5001"
+      - "8080:8080"
+    volumes:
+      - ./ipfs-data:/data/ipfs
+      - ./files:/data/files
+    environment:
+      - IPFS_PATH=/data/ipfs
+    restart: unless-stopped
